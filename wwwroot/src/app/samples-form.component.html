@@ -1,0 +1,90 @@
+<div class="pure-g">
+	<div class="pure-u-1-12"></div>
+	<div class="pure-u-5-6">
+		<h3>Create a new Sample</h3>
+		<form class="pure-form pure-form-stacked">
+			<fieldset>
+				<div class="pure-u-1-3">
+					<label for="NewBarCode">Bar Code</label>
+					<input type="text" name="NewBarCode" class="pure-u-23-24" [(ngModel)]="NewSample.BarCode" />
+				</div>
+				<div class="pure-u-1-3">
+					<label for="NewStatus">Status</label>
+					<input type="text" name="NewStatus" class="pure-u-23-24" [(ngModel)]="NewSample.Status" />
+				</div>
+				<div class="pure-u-1-3">
+					<label for="NewFirstName">First Name</label>
+					<input type="text" name="NewFirstName" class="pure-u-23-24" [(ngModel)]="NewSample.FirstName" />
+				</div>
+				<div class="pure-u-1-3">
+					<label for="NewLastName">Last Name</label>
+					<input type="text" name="NewLastName" class="pure-u-23-24" [(ngModel)]="NewSample.LastName" />
+				</div>
+				<div class="pure-u-1-4">
+					<div class="pure-u-1-1"></div>
+					<div class="pure-u-1-1 m-t">
+						<input type="submit" value="Create" class="pure-button pure-button-primary" (click)="addNewSample()" />
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>
+<hr />
+<div class="pure-g">
+	<div class="pure-u-1-12"></div>
+	<div class="pure-u-5-6">
+		<h3>Samples</h3>
+		<form class="pure-form pure-form-stacked">
+			<fieldset>
+				<div class="pure-u-1-4">
+					<label for="Status">Status</label>
+					<select name="Status" class="pure-u-23-24" [(ngModel)]="Status">
+						<option value="">Select Status</option>
+						<option *ngFor="let status of Statuses" [ngValue]="status.statusId">{{status.statusName}}</option>
+					</select>
+				</div>
+				<div class="pure-u-1-4">
+					<label for="CreatedBy">Name</label>
+					<input type="text" name="CreatedBy" class="pure-u-23-24" [(ngModel)]="CreatedBy" />
+				</div>
+				<div class="pure-u-1-4">
+					<div class="pure-u-1-1"></div>
+					<div class="pure-u-1-1 m-t">
+						<input type="submit" value="Search" class="pure-button pure-button-primary" (click)="search()" />
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>
+
+<div class="pure-g" [ngSwitch]="FilterSamples.length > 0">
+	<div class="pure-u-1-12"></div>
+	<input type="text" name="CreatedBy" class="pure-u-5-6" placeholder="Filter text..." [(ngModel)]="FilterText" (keyup)="filter()" />
+	<div class="pure-u-1-12"></div>
+	<div class="pure-u-5-6" *ngSwitchCase="true">
+		
+		<table class="pure-table">
+			<thead>
+				<th>Id</th>
+				<th>Barcode</th>
+				<th>Status</th>
+				<th>Created By</th>
+			</thead>
+			<tbody>
+				<tr *ngFor="let sample of FilterSamples">
+					<td>{{sample.sampleId}}</td>
+					<td>{{sample.barCode}}</td>
+					<td>{{sample.status.statusName}}</td>
+					<td>{{sample.user.firstName + ' ' + sample.user.lastName}}
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="pure-u-5-6">
+		<p *ngSwitchCase="false">
+			There is no data to show. Note: Name search is case sensitive
+		</p>
+	</div>
+</div>
