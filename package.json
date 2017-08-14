@@ -1,0 +1,19 @@
+{
+  "name": "ftdna_coding_task",
+  "version": "0.0.0",
+  "description": "C# FTDNA Coding Task",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tntran09/FTDNA_Coding_Task.git"
+  },
+  "author": "Toan Tran",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tntran09/FTDNA_Coding_Task/issues"
+  },
+  "homepage": "https://github.com/tntran09/FTDNA_Coding_Task#readme"
+}
